@@ -1,4 +1,4 @@
-package com.jc;
+package com.jim.inst;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
