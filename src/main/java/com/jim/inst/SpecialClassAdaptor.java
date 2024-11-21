@@ -27,15 +27,13 @@ public class SpecialClassAdaptor extends ClassVisitor {
      * This gets called for each Class, as a step in chain-of-command
      * @param version the class version. The minor version is stored in the 16 most significant bits,
      *     and the major version in the 16 least significant bits.
-     * @param access the class's access flags (see {@link Opcodes})
-     * @param name the internal name of the class (see {@link Type#getInternalName()}).
+     * @param access the class's access flags
+     * @param name the internal name of the class
      * @param signature the signature of this class. May be {@literal null} if the class is not a
      *     generic one, and does not extend or implement generic classes or interfaces.
-     * @param superName the internal of name of the super class (see {@link Type#getInternalName()}).
-     *     For interfaces, the super class is {@link Object}. May be {@literal null}, but only for the
-     *     {@link Object} class.
-     * @param interfaces the internal names of the class's interfaces (see {@link
-     *     Type#getInternalName()}). May be {@literal null}.
+     * @param superName the internal of name of the super class.
+     *     For interfaces, the super class is {@link Object}.
+     * @param interfaces the internal names of the class's interfaces
      */
     @Override
     public void visit(int version, int access, String name,
@@ -46,15 +44,15 @@ public class SpecialClassAdaptor extends ClassVisitor {
 
     /**
      * This gets called for each Method, as a step in chain-of-command
-     * @param access the method's access flags (see {@link Opcodes}). This parameter also indicates if
+     * @param access the method's access flags. This parameter also indicates if
      *     the method is synthetic and/or deprecated.
      * @param name the method's name.
-     * @param descriptor the method's descriptor (see {@link Type}).
-     * @param signature the method's signature. May be {@literal null} if the method parameters,
+     * @param descriptor the method's descriptor.
+     * @param signature the method's signature.
      *     return type and exceptions do not use generic types.
-     * @param exceptions the internal names of the method's exception classes (see {@link
-     *     Type#getInternalName()}). May be {@literal null}.
-     * @return
+     * @param exceptions the internal names of the method's exception classes.
+     * @return new SpecialMethodAdaptor if it's a class of interest, else default MethodVisitor
+     *     from next cv
      */
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {

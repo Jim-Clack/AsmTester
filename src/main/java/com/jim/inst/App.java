@@ -35,7 +35,7 @@ package com.jim.inst;
  *   Research the Visitor and Chain-of-Responsibilities design patterns.
  *   In your IDE, compile a println() then Menu > View > Show Bytecodes.
  *   Classes must be transformed before main runs, hence PreMain.premain().
- *   References: https://asm.ow2.io -and- org.objectweb.asm.Opcodes.java.
+ *   References: {@link asm.ow2.io} & {@link org.objectweb.asm.Opcodes}
  */
 public class App
 {

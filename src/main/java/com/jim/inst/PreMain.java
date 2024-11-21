@@ -36,8 +36,7 @@ public class PreMain {
     private static void changeClass(Instrumentation inst, String targetClassFullName) {
         inst.addTransformer(new ClassFileTransformer() {
             public byte[] transform(ClassLoader l, String name, Class c,
-                                    ProtectionDomain d, byte[] b)
-                    throws IllegalClassFormatException {
+                                    ProtectionDomain d, byte[] b) {
                 ClassReader cr = new ClassReader(b);
                 ClassWriter cw = new ClassWriter(cr, 0);
                 ClassVisitor cv = new SpecialClassAdaptor(cw, targetClassFullName);
