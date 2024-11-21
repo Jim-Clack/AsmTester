@@ -24,11 +24,11 @@ public class SpecialMethodAdaptor extends MethodVisitor {
     public void visitLineNumber(final int line, final Label start) {
         mv.visitLineNumber(line, start);
         if (isReadyForCode) {
-            // These bytecodes do this: println(methodName)
+            // These bytecodes do this: System.out.println(methodName)
             // I used ASMifier to figure these out
-            visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-            visitLdcInsn(methodName);
-            visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+            mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+            mv.visitLdcInsn(methodName);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
             isReadyForCode = false;
             wasChanged = true;
         }

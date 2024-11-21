@@ -1,6 +1,6 @@
 package com.jc;
 
-// Preparation
+// Preparation:
 //  Added 2 Maven libraries (IntelliJ may already have done this for you)
 //    org.ow2.asm:asm-9.7.1
 //    org.ow2.asm:asm-util-9.7
@@ -16,7 +16,7 @@ package com.jc;
 //    Can-Retransform-Classes: true
 // How this was created:
 //   Compiled TestClass with the println statement NOT commented-out
-//   Use ASMifier to look at the instrumentation that creates the println
+//   Used ASMifier to look at the instrumentation that creates the println
 //   Commented-out that println, or you can remove it entirely
 //   Put the instrumentation code SpecialMethodAdaptor and customized it
 public class App
