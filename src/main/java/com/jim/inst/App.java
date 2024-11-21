@@ -35,7 +35,7 @@ package com.jim.inst;
  *   Research the Visitor and Chain-of-Responsibilities design patterns.
  *   In your IDE, compile a println() then Menu > View > Show Bytecodes.
  *   Classes must be transformed before main runs, hence PreMain.premain().
- *   References: {asm.ow2.io} & {@link org.objectweb.asm.Opcodes}
+ *   References: asm.ow2.io -and- org.objectweb.asm.Opcodes.java
  */
 public class App
 {
@@ -43,7 +43,6 @@ public class App
         TestClass tc = new TestClass();
         // For this test, we injected a println(methodName) in each method:
         TestClass.stat();
-        tc.setX(0);
-        int a = tc.getX();
+        tc.setX(tc.getX());
     }
 }
