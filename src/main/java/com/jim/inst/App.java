@@ -1,6 +1,6 @@
 package com.jim.inst;
 
-/**
+/*
  * How does Spring do its magic? How does Lombok work internally? How
  * do Scala and Kotlin generate bytecodes? How do so many Java tools
  * accomplish so much? The answer is "instrumentation."
