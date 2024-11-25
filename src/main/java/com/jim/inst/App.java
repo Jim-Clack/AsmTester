@@ -6,14 +6,14 @@ package com.jim.inst;
  * accomplish so much? The answer is "instrumentation."
 
  * Intro to Instrumentation Exercise...
- *   Review App & TestClass, then run to be amazed - injects println()'s
- *   Look at SpecialMethodVisitor to see how a println()'s get injected
+ *   Review App & TestClass, then run to be amazed - injects println()'s.
+ *   Look at SpecialMethodVisitor to see how a println()'s get injected.
  *   None of this works if you don't do all the proper preparations...
 
  * Preparation: (The IDE may already have done some of these for you)
  *   Add 2 Maven libraries
  *     org.ow2.asm:asm-9.7.1
- *     org.ow2.asm:asm-util-9.7
+ *     org.ow2.asm:asm-util-9.7.1
  *   Add an artifact/output to the project structure: JAR
  *     Check the box to include it in the project build
  *     Record the JAR path* ... out\artifacts\AsmTester_jar\AsmTester.jar
