@@ -6,6 +6,7 @@ import org.objectweb.asm.MethodVisitor;
 import static org.objectweb.asm.Opcodes.*;
 
 /**
+ * @apiNote SpecialClassAdaptor ----------------------------------------------
  * This is the guy that does special things to a class.
  */
 public class SpecialClassAdaptor extends ClassVisitor {

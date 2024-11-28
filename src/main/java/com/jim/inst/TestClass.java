@@ -1,6 +1,7 @@
 package com.jim.inst;
 
 /**
+ * @apiNote TestClass --------------------------------------------------------
  * Default target class for testing. Note the tha methods do NOT
  * contain any println() statements. They will be injected.
  */

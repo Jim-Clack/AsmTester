@@ -7,6 +7,11 @@ import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
 
+/**
+ * @apiNote PreMain ----------------------------------------------------------
+ * This class gets control BEFORE main due to settings in MANIFEST.MF as well
+ *     as a special JVM command-line argument
+ */
 public class PreMain {
 
     // Class to modify

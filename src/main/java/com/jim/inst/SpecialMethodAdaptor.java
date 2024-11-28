@@ -4,6 +4,10 @@ import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import static org.objectweb.asm.Opcodes.*;
 
+/**
+ * @apiNote SpecialMethodAdaptor ---------------------------------------------
+ * This is the guy that does special things to a method.
+ */
 public class SpecialMethodAdaptor extends MethodVisitor {
 
     private final String methodName;
@@ -12,7 +16,7 @@ public class SpecialMethodAdaptor extends MethodVisitor {
 
     /**
      * Ctor.
-     * @param name name of method.
+     * @param name name of method to modify
      * @param mv method visitor as returned from downstream.
      */
     public SpecialMethodAdaptor(String name, MethodVisitor mv) {
@@ -43,6 +47,7 @@ public class SpecialMethodAdaptor extends MethodVisitor {
             // These bytecodes are equivalent this: System.out.println(methodName)
             // You can use ASMifier to figure these out or you can Show Bytecodes in
             // your IDE then refer to Opcodes.java to see what visit method to use.
+            // The visitXxx() methods are documented in comments in Opcodes.java.
             mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
             mv.visitLdcInsn(methodName);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
