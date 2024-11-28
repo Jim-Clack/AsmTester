@@ -6,6 +6,8 @@ import org.objectweb.asm.ClassWriter;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @apiNote PreMain ----------------------------------------------------------
@@ -14,8 +16,10 @@ import java.security.ProtectionDomain;
  */
 public class PreMain {
 
-    // Class to modify
-    private static String targetClassFullName = "com/jim/inst/TestClass";
+    /**
+     * Let's track all referenced classes, just for testing.
+     */
+    private static final List<String> classes = new LinkedList<>();
 
     /**
      * This must be called premain() and have the arguments shown here.
@@ -26,28 +30,39 @@ public class PreMain {
      * @param inst instrumentation, created and passed to this by JVM
      */
     public static void premain(String agentArgs, Instrumentation inst) {
-        if(agentArgs != null && !agentArgs.trim().isEmpty()) {
-            targetClassFullName = agentArgs;
-        }
-        changeClass(inst, targetClassFullName);
+        changeClass(inst);
     }
 
     /**
      * This inserts a SpecialClassAdaptor into the class loaders
-     * @param inst instrumentation
-     * @param targetClassFullName name of class to modify
+     * @param inst instrumentation from the jvm
      */
-    private static void changeClass(Instrumentation inst, String targetClassFullName) {
+    private static void changeClass(Instrumentation inst) {
         inst.addTransformer(new ClassFileTransformer() {
             public byte[] transform(ClassLoader l, String name, Class c,
                                     ProtectionDomain d, byte[] b) {
+                if(name == null) {
+                    if(c == null) {
+                        return null;
+                    }
+                    name = c.getName();
+                }
+                classes.add(name);
                 ClassReader cr = new ClassReader(b);
                 ClassWriter cw = new ClassWriter(cr, 0);
-                ClassVisitor cv = new SpecialClassAdaptor(cw, targetClassFullName);
+                ClassVisitor cv = new SpecialClassAdaptor(cw);
                 cr.accept(cv, 0);
                 return cw.toByteArray();
             }
         });
+    }
+
+    /**
+     * Return the descriptors of all classes.
+     * @return list of referenced classes
+     */
+    public static List<String> getClasses() {
+        return classes;
     }
 
 }

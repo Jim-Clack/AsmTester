@@ -1,5 +1,6 @@
 package com.jim.inst;
 
+import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
@@ -11,17 +12,14 @@ import static org.objectweb.asm.Opcodes.*;
  */
 public class SpecialClassAdaptor extends ClassVisitor {
 
-    private final String targetClassFullName;
     private boolean isClassOfInterest = false;
 
     /**
      * Ctor.
      * @param cw a ClassWriter
-     * @param targetClassFullName name of the class that we want to modify
      */
-    public SpecialClassAdaptor(ClassWriter cw, String targetClassFullName) {
+    public SpecialClassAdaptor(ClassWriter cw) {
         super(ASM9, cw);
-        this.targetClassFullName = targetClassFullName;
     }
 
     /**
@@ -40,7 +38,14 @@ public class SpecialClassAdaptor extends ClassVisitor {
     public void visit(int version, int access, String name,
                       String signature, String superName, String[] interfaces) {
         cv.visit(version, access, name, signature, superName, interfaces);
-        isClassOfInterest = name.equals(targetClassFullName);
+    }
+
+    @Override
+    public AnnotationVisitor visitAnnotation(final String descriptor, final boolean visible) {
+        if(descriptor.equals("Lcom/jim/inst/InjectPrintlnMethodNames;")) {
+            isClassOfInterest = true;
+        }
+        return cv.visitAnnotation(descriptor, visible);
     }
 
     /**

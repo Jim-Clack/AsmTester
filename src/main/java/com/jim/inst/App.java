@@ -45,5 +45,8 @@ public class App
         // For this test, we injected a println(methodName) in each method:
         TestClass.stat();
         tc.setX(tc.getX());
+        // for testing...
+        PreMain.getClasses().forEach(System.out::println);
     }
+
 }
