@@ -3,11 +3,13 @@ package com.jim.inst;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @apiNote PreMain ----------------------------------------------------------
@@ -17,9 +19,14 @@ import java.util.List;
 public class PreMain {
 
     /**
-     * Let's track all referenced classes, just for testing.
+     * True to assemble the set of all classes.
      */
-    private static final List<String> classes = new LinkedList<>();
+    public static boolean TRACK_CLASSES = true;
+
+    /**
+     * Let's track all referenced classes, both loaded and transformable, just for testing.
+     */
+    private static final Set<String> classes = new HashSet<>();
 
     /**
      * This must be called premain() and have the arguments shown here.
@@ -30,7 +37,12 @@ public class PreMain {
      * @param inst instrumentation, created and passed to this by JVM
      */
     public static void premain(String agentArgs, Instrumentation inst) {
+        System.out.println("premain");
         changeClass(inst);
+    }
+
+    public static void agentmain(String agentArgs, Instrumentation inst) {
+        System.out.println("agentmain");
     }
 
     /**
@@ -38,16 +50,15 @@ public class PreMain {
      * @param inst instrumentation from the jvm
      */
     private static void changeClass(Instrumentation inst) {
+        if(classes.isEmpty()) {
+            Arrays.stream(inst.getAllLoadedClasses()).forEach(clazz -> {
+                addClassName(clazz, null);
+            });
+        }
         inst.addTransformer(new ClassFileTransformer() {
             public byte[] transform(ClassLoader l, String name, Class c,
                                     ProtectionDomain d, byte[] b) {
-                if(name == null) {
-                    if(c == null) {
-                        return null;
-                    }
-                    name = c.getName();
-                }
-                classes.add(name);
+                addClassName(c, name);
                 ClassReader cr = new ClassReader(b);
                 ClassWriter cw = new ClassWriter(cr, 0);
                 ClassVisitor cv = new SpecialClassAdaptor(cw);
@@ -58,10 +69,35 @@ public class PreMain {
     }
 
     /**
-     * Return the descriptors of all classes.
-     * @return list of referenced classes
+     * Update the classes set with the name of a class.
+     * @implNote Number, Enum, collections, and boxed types are also added to the set
+     * @param clazz the Class itself, null if class is not loaded and can be transformed
+     * @param name the name of the class, may be null if clazz is not null
      */
-    public static List<String> getClasses() {
+    private static void addClassName(Class<?> clazz, String name) {
+        if(!TRACK_CLASSES) {
+            return;
+        }
+        String loaded = "WasLoaded: ";
+        String className = name;
+        if(clazz == null) {
+            loaded = "Transform: ";
+        } else {
+            if (clazz.isPrimitive() || clazz.isArray()) {
+                return;
+            }
+            if (className == null) {
+                className = clazz.getName();
+            }
+        }
+        classes.add(loaded + className.replaceAll("/", "."));
+    }
+
+    /**
+     * Return the descriptors of all classes. Note: Callable from main().
+     * @return set of referenced classes
+     */
+    public static Set<String> getClasses() {
         return classes;
     }
 
