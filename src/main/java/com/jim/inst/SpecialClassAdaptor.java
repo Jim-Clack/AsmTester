@@ -66,7 +66,7 @@ public class SpecialClassAdaptor extends ClassVisitor {
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
         MethodVisitor mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
         if(isClassOfInterest && !name.startsWith("<") && mv != null) {
-            System.out.println("########## changing method: " + targetClassFullName + "." + name);
+            System.out.println("changing method: " + targetClassFullName + "." + name);
             return new SpecialMethodAdaptor(name, mv);
         }
         return mv;

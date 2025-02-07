@@ -9,7 +9,7 @@ package com.jim.inst;
 public class TestClass {
 
     public static int s = 0;
-    private int x;
+    private int x = 0;
 
     public static void stat() {
         // System.out.println("stat"); // for testing only

@@ -45,7 +45,6 @@ public class PreMain {
         if(agentArgs != null && !agentArgs.trim().isEmpty()) {
             targetClassFullName = agentArgs;
         }
-        System.out.println("########## premain()");
         changeClass(inst, targetClassFullName);
     }
 
@@ -82,10 +81,10 @@ public class PreMain {
         if(!TRACK_CLASSES) {
             return;
         }
-        String loaded = " wasloaded: ";
+        String loaded = "is-loaded: ";
         String className = name;
         if(clazz == null) {
-            loaded = " transform: ";
+            loaded = "transform: ";
         } else {
             if (clazz.isPrimitive() || clazz.isArray()) {
                 return;

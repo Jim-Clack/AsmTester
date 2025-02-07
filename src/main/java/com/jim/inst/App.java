@@ -43,8 +43,9 @@ public class App
 {
     public static void main(String[] args) {
         // For this test, we injected a println(methodName) in each method:
-        System.out.println("########## main is calling TestClass stat(), getX(), and setX()");
+        System.out.println("########## main is constructing TestClass");
         TestClass tc = new TestClass();
+        System.out.println("########## main is calling tc. stat(), getX(), and setX()");
         TestClass.stat();
         tc.setX(tc.getX());
         // for testing...
