@@ -3,8 +3,9 @@ package com.jim.inst;
 /*
  * @apiNote App --------------------------------------------------------------
  * How does Spring do its magic? How does Lombok work internally? How
- * do Scala and Kotlin generate bytecodes? How do so many Java tools
- * accomplish so much? The answer is "instrumentation."
+ * do Scala and Kotlin generate bytecodes? How do Scala and Kotlin Compilers
+ * create executables? How do so many Java tools accomplish so much?
+ * The answer is "instrumentation."
  * ----------------
  * Intro to Instrumentation Exercise...
  *   Review App+TestClass, then run to be amazed - it injects println's.
@@ -17,7 +18,7 @@ package com.jim.inst;
  *     org.ow2.asm:asm-util-9.7.1
  *   Add an artifact/output to the project structure: JAR
  *     Check the box to include it in the project build
- *     Record the JAR path* ... out\artifacts\AsmTester_jar\AsmTester.jar
+ *     Make note of the JAR path <...>\out\artifacts\AsmTester_jar\AsmTester.jar
  *   Adjust your run/debug configuration...
  *     *Add JAR path to your -VM path (change backslashes to forward slashes)
  *       -javaagent:./out/artifacts/AsmTester_jar/AsmTester.jar
@@ -41,11 +42,13 @@ package com.jim.inst;
 public class App
 {
     public static void main(String[] args) {
-        TestClass tc = new TestClass();
         // For this test, we injected a println(methodName) in each method:
+        System.out.println("########## main is calling TestClass stat(), getX(), and setX()");
+        TestClass tc = new TestClass();
         TestClass.stat();
         tc.setX(tc.getX());
         // for testing...
+        System.out.println("########## list of classes reviewed:");
         PreMain.getClasses().forEach(System.out::println);
     }
 

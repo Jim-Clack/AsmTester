@@ -13,13 +13,15 @@ import static org.objectweb.asm.Opcodes.*;
 public class SpecialClassAdaptor extends ClassVisitor {
 
     private boolean isClassOfInterest = false;
+    private final String targetClassFullName;
 
     /**
      * Ctor.
      * @param cw a ClassWriter
      */
-    public SpecialClassAdaptor(ClassWriter cw) {
+    public SpecialClassAdaptor(ClassWriter cw, String targetClassFullName) {
         super(ASM9, cw);
+        this.targetClassFullName = targetClassFullName;
     }
 
     /**
@@ -64,7 +66,7 @@ public class SpecialClassAdaptor extends ClassVisitor {
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
         MethodVisitor mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
         if(isClassOfInterest && !name.startsWith("<") && mv != null) {
-            // System.out.println("Changing Method " + targetClassFullName + "." + name);
+            System.out.println("########## changing method: " + targetClassFullName + "." + name);
             return new SpecialMethodAdaptor(name, mv);
         }
         return mv;
@@ -76,11 +78,11 @@ public class SpecialClassAdaptor extends ClassVisitor {
     @Override
     public void visitEnd() {
         cv.visitEnd();
-        // Only for testing
+        // Only for testing, write class to a file
         /*
         if(isClassOfInterest) {
             try (FileOutputStream stream = new FileOutputStream(
-                    targetClassFullName.replaceAll("\\\\", "-").replaceAll("/", "-") + ".class")) {
+                    targetClassFullName.replaceAll("\\\\", "-").replaceAll("/", "-") + "-Mod.class")) {
                 stream.write(((ClassWriter)cv).toByteArray());
             } catch (IOException e) {
                 throw new RuntimeException(e);

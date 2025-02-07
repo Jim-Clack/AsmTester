@@ -24,6 +24,11 @@ public class PreMain {
     public static boolean TRACK_CLASSES = true;
 
     /**
+     * Class to modify.
+     */
+    private static String targetClassFullName = "com/jim/inst/TestClass";
+
+    /**
      * Let's track all referenced classes, both loaded and transformable, just for testing.
      */
     private static final Set<String> classes = new HashSet<>();
@@ -33,23 +38,22 @@ public class PreMain {
      * Note that this must be in a .jar file, not a bare .class file.
      * To call this BEFORE main(), see MANIFEST.MF and VM option -javaagent
      * @param agentArgs command-line tail, full name of a class with slashes
-     *                  instead of periods. If omitted, deafults to TestClass
+     *                  instead of periods. If omitted, defults to TestClass
      * @param inst instrumentation, created and passed to this by JVM
      */
     public static void premain(String agentArgs, Instrumentation inst) {
-        System.out.println("premain");
-        changeClass(inst);
-    }
-
-    public static void agentmain(String agentArgs, Instrumentation inst) {
-        System.out.println("agentmain");
+        if(agentArgs != null && !agentArgs.trim().isEmpty()) {
+            targetClassFullName = agentArgs;
+        }
+        System.out.println("########## premain()");
+        changeClass(inst, targetClassFullName);
     }
 
     /**
      * This inserts a SpecialClassAdaptor into the class loaders
      * @param inst instrumentation from the jvm
      */
-    private static void changeClass(Instrumentation inst) {
+    private static void changeClass(Instrumentation inst, String targetClassFullName) {
         if(classes.isEmpty()) {
             Arrays.stream(inst.getAllLoadedClasses()).forEach(clazz -> {
                 addClassName(clazz, null);
@@ -61,7 +65,7 @@ public class PreMain {
                 addClassName(c, name);
                 ClassReader cr = new ClassReader(b);
                 ClassWriter cw = new ClassWriter(cr, 0);
-                ClassVisitor cv = new SpecialClassAdaptor(cw);
+                ClassVisitor cv = new SpecialClassAdaptor(cw, targetClassFullName);
                 cr.accept(cv, 0);
                 return cw.toByteArray();
             }
@@ -78,10 +82,10 @@ public class PreMain {
         if(!TRACK_CLASSES) {
             return;
         }
-        String loaded = "WasLoaded: ";
+        String loaded = " wasloaded: ";
         String className = name;
         if(clazz == null) {
-            loaded = "Transform: ";
+            loaded = " transform: ";
         } else {
             if (clazz.isPrimitive() || clazz.isArray()) {
                 return;
