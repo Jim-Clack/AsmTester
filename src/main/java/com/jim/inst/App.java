@@ -15,6 +15,8 @@ package com.jim.inst;
  * Preparation: (The IDE may already have done some of these for you)
  *   Add this library to your project:
  *     org.ow2.asm:asm-util:9.7.1
+ *     note: The latest update of IntelliJ cannot find/list this, but you can
+ *           just type/paste it in and it will be okay. (IntelliJ bug/setting?)
  *   Add an artifact/output to the project structure: JAR
  *     Check the box to include it in the project build
  *     Make note of the JAR path <...>\out\artifacts\AsmTester_jar\AsmTester.jar
