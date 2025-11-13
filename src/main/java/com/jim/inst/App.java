@@ -13,9 +13,8 @@ package com.jim.inst;
  *   None of this works if you don't do all the proper preparations...
  * ----------------
  * Preparation: (The IDE may already have done some of these for you)
- *   Add these 2 Maven libraries:
- *     org.ow2.asm:asm-9.7.1
- *     org.ow2.asm:asm-util-9.7.1
+ *   Add this library to your project:
+ *     org.ow2.asm:asm-util:9.7.1
  *   Add an artifact/output to the project structure: JAR
  *     Check the box to include it in the project build
  *     Make note of the JAR path <...>\out\artifacts\AsmTester_jar\AsmTester.jar
