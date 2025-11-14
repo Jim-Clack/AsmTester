@@ -17,16 +17,26 @@ package com.jim.inst;
  *     org.ow2.asm:asm-util:9.7.1
  *     note: The latest update of IntelliJ cannot find/list this, but you can
  *           just type/paste it in and it will be okay. (IntelliJ bug/setting?)
- *   Add an artifact/output to the project structure: JAR
- *     Check the box to include it in the project build
- *     Make note of the JAR path <...>\out\artifacts\AsmTester_jar\AsmTester.jar
- *   Adjust your run/debug configuration...
- *     *Add JAR path to your -VM path (change backslashes to forward slashes)
- *       -javaagent:./out/artifacts/AsmTester_jar/AsmTester.jar
  *   In the META-INF/MANIFEST.MF file, add the following entries:
+ *     Main-Class: com.jim.inst.App
  *     Premain-Class: com.jim.inst.PreMain
  *     Can-Redefine-Classes: true
  *     Can-Retransform-Classes: true
+ *   Add an artifact/output to the project structure: JAR
+ *     Check the box to include it in the project build
+ *     Click the asm library (to the right) and select "Put into output root"
+ *     Click the .jar to verify the MANIFEST file and that the Main class is App
+ *     Make note of the JAR path <...>\out\artifacts\AsmTester_jar\AsmTester.jar
+ *   Adjust your run/debug configuration, giving it a name...
+ *     Create a Run/Debug Configuration for a "JAR Application"
+ *     Browse to and select the previously noted JAR path
+ *     Add that JAR path to your -VM path (change any backslashes to slashes)
+ *       -javaagent:./out/artifacts/AsmTester_jar/AsmTester.jar
+ *   Per your package name, update targetClassFullName in PreMain.java
+ *     String targetClassFullName = "your/package/name/TestClass"
+ *   To run/test it...
+ *     First do a fresh build to create the JAR
+ *     Then run/debug the Configuration you created above
  * ----------------
  * How this was created:
  *   Compiled TestClass with the println statement NOT commented-out
