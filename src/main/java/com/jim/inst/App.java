@@ -15,22 +15,22 @@ package com.jim.inst;
  * Preparation: (The IDE may already have done some of these for you)
  *   Add this library to your project:
  *     org.ow2.asm:asm-util:9.7.1
- *     note: The latest update of IntelliJ cannot find/list this, but you can
+ *     note: My latest update of IntelliJ cannot find/list this, but you can
  *           just type/paste it in and it will be okay. (IntelliJ bug/setting?)
- *   In the META-INF/MANIFEST.MF file, add the following entries:
+ *   In META-INF/MANIFEST.MF add these entries, using your package name:
  *     Main-Class: com.jim.inst.App
  *     Premain-Class: com.jim.inst.PreMain
  *     Can-Redefine-Classes: true
  *     Can-Retransform-Classes: true
  *   Add an artifact/output to the project structure: JAR
  *     Check the box to include it in the project build
- *     Click the asm library (to the right) and select "Put into output root"
+ *     Click the asm library (to the right) and select "Extract into Output Root"
  *     Click the .jar to verify the MANIFEST file and that the Main class is App
  *     Make note of the JAR path <...>\out\artifacts\AsmTester_jar\AsmTester.jar
  *   Adjust your run/debug configuration, giving it a name...
  *     Create a Run/Debug Configuration for a "JAR Application"
  *     Browse to and select the previously noted JAR path
- *     Add that JAR path to your -VM path (change any backslashes to slashes)
+ *     Add switch and that path to your -VM path (no backslashes, front slashes)
  *       -javaagent:./out/artifacts/AsmTester_jar/AsmTester.jar
  *   Per your package name, update targetClassFullName in PreMain.java
  *     String targetClassFullName = "your/package/name/TestClass"
