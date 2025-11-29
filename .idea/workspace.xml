@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0e8ac4b8-00d1-4c9e-a6ee-59b6187423bf" name="Changes" comment="Fixed MANIFEST, added batch and shell files" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Jim-Clack&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Jim-Clack/AsmTester.git&quot;,
+    &quot;accountId&quot;: &quot;ca7e9aa5-f7c2-4e41-ad4c-49273b01a703&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="34Fog2kltgm8oE7sDvkJtbGYf6q" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ASMifier.executor": "Debug",
+    "Batch.ASMIFIER.executor": "Debug",
+    "Batch.AsmifierBatch.executor": "Debug",
+    "Batch.asmifier.executor": "Debug",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JAR Application.JarApp.executor": "Debug",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.1544477",
+    "project.structure.side.proportion": "0.2997685",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.ASMifier">
+    <configuration name="ASMifier" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.objectweb.asm.util.ASMifier" />
+      <module name="AsmTester" />
+      <option name="PROGRAM_PARAMETERS" value="com.jim.inst.TestClass" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JarApp" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/AsmTester_jar/AsmTester.jar" />
+      <option name="VM_PARAMETERS" value="-javaagent:./out/artifacts/AsmTester_jar/AsmTester.jar" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\jimcl\IdeaProjects\AsmTester" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.ASMifier" />
+      <item itemvalue="JAR Application.JarApp" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0e8ac4b8-00d1-4c9e-a6ee-59b6187423bf" name="Changes" comment="" />
+      <created>1760818788483</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760818788483</updated>
+      <workItem from="1760818789864" duration="2253000" />
+      <workItem from="1762968280492" duration="1054000" />
+      <workItem from="1763066040602" duration="10000" />
+      <workItem from="1763066233440" duration="3760000" />
+      <workItem from="1763070034585" duration="2658000" />
+      <workItem from="1763073068533" duration="1179000" />
+      <workItem from="1763074262086" duration="7643000" />
+      <workItem from="1763130407666" duration="7122000" />
+      <workItem from="1763660681241" duration="16000" />
+      <workItem from="1763661754457" duration="45000" />
+      <workItem from="1763661823422" duration="4000" />
+      <workItem from="1763666189903" duration="11608000" />
+      <workItem from="1764372513947" duration="1224000" />
+      <workItem from="1764373748616" duration="3074000" />
+    </task>
+    <task id="LOCAL-00001" summary="Updated pom">
+      <option name="closed" value="true" />
+      <created>1763072692422</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1763072692422</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Comment updated">
+      <option name="closed" value="true" />
+      <created>1763073228306</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763073228306</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Comment updated, renamed NullTest, settings changed">
+      <option name="closed" value="true" />
+      <created>1763078755943</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763078755943</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Comments updated">
+      <option name="closed" value="true" />
+      <created>1763079410661</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1763079410661</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed MANIFEST, added batch and shell files">
+      <option name="closed" value="true" />
+      <created>1764376009948</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1764376009948</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated pom" />
+    <MESSAGE value="Comment updated" />
+    <MESSAGE value="Comment updated, renamed NullTest, settings changed" />
+    <MESSAGE value="Comments updated" />
+    <MESSAGE value="Fixed MANIFEST, added batch and shell files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed MANIFEST, added batch and shell files" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
