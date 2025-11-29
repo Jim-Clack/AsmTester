@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Main-Class: com.jim.inst.App
-PreMain-Class: com.jim.inst.PreMain
-Can-Redefine-Classes: true
-Can-Retransform-Classes: true
+Premain-Class: com.jim.inst.PreMain
+Can-Redefine-Classes: True
+Can-Retransform-Classes: True
